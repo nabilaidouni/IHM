@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import java.util.ArrayList;
+
 import fr.tse.fricmanager.R;
+import fr.tse.fricmanager.model.User;
 
 public class CrudGroupActivity extends AppCompatActivity {
 
