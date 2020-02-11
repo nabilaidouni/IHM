@@ -46,7 +46,7 @@ public class CrudDepenseActivity extends AppCompatActivity {
 
         Button b0 = new Button(this);
         b0.setText("Ajouter une dépense");
-        b0.setBackgroundColor(0x00ff00);
+        b0.setBackgroundColor(0);
         lLayout.addView(b0);
 
         for(int i=0;i<depenses.size();i++){
