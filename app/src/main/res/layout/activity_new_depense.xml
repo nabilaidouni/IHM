@@ -24,8 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="Nom du User" />
+            android:inputType="textPersonName" />
 
         <TextView
             android:id="@+id/textViewMontant"
@@ -38,8 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="numberDecimal"
-            android:text="Montant en €"/>
+            android:inputType="numberDecimal" />
 
         <TextView
             android:id="@+id/textViewMotif"
@@ -52,8 +50,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:text="pourquoi ?" />
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Est-ce un remboursement ?" />
+
+        <CheckBox
+            android:id="@+id/checkBoxRemboursement"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/buttonSave"

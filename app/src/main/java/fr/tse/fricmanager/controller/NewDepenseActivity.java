@@ -6,6 +6,7 @@ import fr.tse.fricmanager.model.*;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -23,6 +24,7 @@ public class NewDepenseActivity extends AppCompatActivity {
     User userLogged;
     ArrayList<User> listeUser;
     ArrayList<Depense> listeDepense;
+    CheckBox remboursement;
 
 
 
@@ -39,6 +41,7 @@ public class NewDepenseActivity extends AppCompatActivity {
         groupeDepense = (Groupe)bd.getSerializable("groupeDepense");
         listeDepense = (ArrayList<Depense>)bd.getSerializable("listeDepense");
 
+        remboursement = findViewById(R.id.checkBoxRemboursement);
         username = findViewById(R.id.editTextUser);
         montant = findViewById(R.id.editTextMontant);
         motif = findViewById(R.id.editTextMotif);
