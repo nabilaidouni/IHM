@@ -51,15 +51,15 @@ public class NewDepenseActivity extends AppCompatActivity {
             nouvelleDepence = new Depense(mont , motif.getText().toString(), groupeDepense, userLogged);
             listeDepense.add(nouvelleDepence);
 
+            Intent CrudDepenseActivity = new Intent(NewDepenseActivity.this, CrudDepenseActivity.class);
+            //CrudDepenseActivity.putExtras(creerBundle());
+            startActivity(CrudDepenseActivity);
 
         }
         catch (Exception e) {
             Toast.makeText(getApplicationContext(), "La valeur entrée n'est pas correcte", Toast.LENGTH_LONG).show();
         }
 
-        Intent CrudDepenseActivity = new Intent(NewDepenseActivity.this, CrudDepenseActivity.class);
-        CrudDepenseActivity.putExtras(creerBundle());
-        startActivity(CrudDepenseActivity);
 
 
     }
