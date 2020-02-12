@@ -58,10 +58,16 @@
             android:layout_height="wrap_content"
             android:text="Est-ce un remboursement ?" />
 
-        <CheckBox
-            android:id="@+id/checkBoxRemboursement"
+<!--        <CheckBox-->
+<!--            android:id="@+id/checkBoxRemboursement"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
+
+        <TextView
+            android:id="@+id/textView8"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="Groupe" />
 
         <LinearLayout
             android:id="@+id/layoutGroupe"

@@ -25,7 +25,7 @@ public class NewDepenseActivity extends AppCompatActivity {
     ArrayList<User> listeUser;
     ArrayList<Depense> listeDepense;
     LinearLayout mlayoutGroupe;
-    CheckBox remboursement;
+    // CheckBox remboursement;
 
 
     @Override
@@ -40,7 +40,7 @@ public class NewDepenseActivity extends AppCompatActivity {
         listeGroupe = (ArrayList<Groupe>)bd.getSerializable("listeGroupe");
         listeDepense = (ArrayList<Depense>)bd.getSerializable("listeDepense");
 
-        remboursement = findViewById(R.id.checkBoxRemboursement);
+        // remboursement = findViewById(R.id.checkBoxRemboursement);
         username = findViewById(R.id.editTextUser);
         montant = findViewById(R.id.editTextMontant);
         motif = findViewById(R.id.editTextMotif);
@@ -78,9 +78,9 @@ public class NewDepenseActivity extends AppCompatActivity {
 
             nouvelleDepence = new Depense(mont , motif.getText().toString(), groupeDepense, userLogged);
             listeDepense.add(nouvelleDepence);
-
-            Intent CrudDepenseActivity = new Intent(NewDepenseActivity.this, CrudDepenseActivity.class);
-            //CrudDepenseActivity.putExtras(creerBundle());
+            Toast.makeText(getApplicationContext(),"Depense added",Toast.LENGTH_SHORT).show();
+            Intent CrudDepenseActivity = new Intent(NewDepenseActivity.this, GroupActivity.class);
+            CrudDepenseActivity.putExtras(creerBundle());
             startActivity(CrudDepenseActivity);
 
 
