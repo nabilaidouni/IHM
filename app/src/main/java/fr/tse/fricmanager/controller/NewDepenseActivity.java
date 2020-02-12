@@ -25,6 +25,7 @@ public class NewDepenseActivity extends AppCompatActivity {
     ArrayList<User> listeUser;
     ArrayList<Depense> listeDepense;
     LinearLayout mlayoutGroupe;
+    CheckBox remboursement;
 
 
     @Override
@@ -39,6 +40,7 @@ public class NewDepenseActivity extends AppCompatActivity {
         listeGroupe = (ArrayList<Groupe>)bd.getSerializable("listeGroupe");
         listeDepense = (ArrayList<Depense>)bd.getSerializable("listeDepense");
 
+        remboursement = findViewById(R.id.checkBoxRemboursement);
         username = findViewById(R.id.editTextUser);
         montant = findViewById(R.id.editTextMontant);
         motif = findViewById(R.id.editTextMotif);
