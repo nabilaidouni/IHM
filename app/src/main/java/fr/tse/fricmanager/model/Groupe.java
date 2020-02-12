@@ -1,8 +1,10 @@
 package fr.tse.fricmanager.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-public class Groupe {
+public class Groupe implements Serializable {
 
     private String mName;
     private List<User> mUsers;
@@ -10,6 +12,8 @@ public class Groupe {
 
     public Groupe(String name) {
         this.mName = name;
+        this.mUsers = new ArrayList<>();
+        this.mDepenses = new ArrayList<>();
     }
 
     public String getmName() {
@@ -25,7 +29,9 @@ public class Groupe {
     }
 
     public void setmUsers(List<User> users) {
-        this.mUsers = users;
+        for (int i = 0; i < users.size(); i++){
+            this.addmUser(users.get(i));
+        }
     }
 
     public List<Depense> getmDepenses() {
@@ -35,4 +41,8 @@ public class Groupe {
     public void setmDepenses(List<Depense> depenses) {
         this.mDepenses = depenses;
     }
+
+    public void addmUser(User user){
+        this.mUsers.add(user);
+    };
 }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -45,13 +46,21 @@ public class NewDepenseActivity extends AppCompatActivity {
 
     public void saveDepense(View view){
         Depense nouvelleDepence;
-        nouvelleDepence = new Depense(parseLong(montant.getText().toString()), motif.getText().toString(), groupeDepense, userLogged);
-        listeDepense.add(nouvelleDepence);
+        try {
+            long mont = parseLong(montant.getText().toString());
+            nouvelleDepence = new Depense(mont , motif.getText().toString(), groupeDepense, userLogged);
+            listeDepense.add(nouvelleDepence);
 
+
+        }
+        catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "La valeur entrée n'est pas correcte", Toast.LENGTH_LONG).show();
+        }
 
         Intent CrudDepenseActivity = new Intent(NewDepenseActivity.this, CrudDepenseActivity.class);
         CrudDepenseActivity.putExtras(creerBundle());
         startActivity(CrudDepenseActivity);
+
 
     }
 

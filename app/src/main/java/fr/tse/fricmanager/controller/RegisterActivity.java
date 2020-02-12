@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -40,16 +41,26 @@ public class RegisterActivity extends AppCompatActivity {
                 existeDeja = true;
             }
         }
-        if (!existeDeja & (password.getText().toString().contentEquals(password2.getText().toString()))){
-            Log.d("mon message", "le pseudo est bon");
-            User nouveauUtil = new User(username.getText().toString(), password.getText().toString());
-            listeUser.add(nouveauUtil);
+        if (!existeDeja) {
+            if (password.getText().toString().contentEquals(password2.getText().toString())) {
+                Log.d("mon message", "le pseudo est bon");
+                User nouveauUtil = new User(username.getText().toString(), password.getText().toString());
+                listeUser.add(nouveauUtil);
 
-            Intent LoginActivity = new Intent(RegisterActivity.this, LoginActivity.class);
-            Bundle bd = new Bundle();
-            bd.putSerializable("listeUser", listeUser);
-            LoginActivity.putExtras(bd);
-            startActivity(LoginActivity);
+                Intent LoginActivity = new Intent(RegisterActivity.this, LoginActivity.class);
+                Bundle bd = new Bundle();
+                bd.putSerializable("listeUser", listeUser);
+                LoginActivity.putExtras(bd);
+                startActivity(LoginActivity);
+
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "Les Mots de passes ne sont pas les mêmes", Toast.LENGTH_LONG).show();
+
+            }
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Ce nom d'utilisateur est déjà utilisé", Toast.LENGTH_LONG).show();
 
         }
     }
