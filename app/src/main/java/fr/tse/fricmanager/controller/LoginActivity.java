@@ -11,12 +11,16 @@ import fr.tse.fricmanager.model.*;
 
 import android.os.Bundle;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText username, password;
+    Groupe groupeDepense;
+    ArrayList<Groupe> listeGroupe;
     ArrayList<User> listeUser;
+    ArrayList<Depense> listeDepense;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,15 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = this.getIntent();
             Bundle bd = intent.getExtras();
             listeUser = (ArrayList<User>)bd.getSerializable("listeUser");
+            listeGroupe = (ArrayList<Groupe>)bd.getSerializable("listeGroupe");
+            listeDepense = (ArrayList<Depense>)bd.getSerializable("listeDepense");
+
         }
         catch (Exception e){
             listeUser = new ArrayList<>();
+            listeGroupe = new ArrayList<>();
+            listeDepense = new ArrayList<>();
+
 
         }
         User admin = new User("admin","admin");
@@ -42,9 +52,9 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view) {
         String user = username.getText().toString();
         if (validateLogin(user, password.getText().toString())) {
-            Intent CrudGroupActivity = new Intent(LoginActivity.this, CrudGroupActivity.class);
-            Bundle bd = new Bundle();
-            bd.putSerializable("listeUser", listeUser);
+            Intent CrudGroupActivity = new Intent(LoginActivity.this, NewDepenseActivity.class);
+            Bundle bd = creerBundle();
+            bd.putString("userLogged", user);
             CrudGroupActivity.putExtras(bd);
             startActivity(CrudGroupActivity);
         } else {
@@ -54,9 +64,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void register(View view){
         Intent RegisterActivity = new Intent(LoginActivity.this, RegisterActivity.class);
-        Bundle bd = new Bundle();
-        bd.putSerializable("listeUser", listeUser);
-        RegisterActivity.putExtras(bd);
+
+        RegisterActivity.putExtras(creerBundle());
         startActivity(RegisterActivity);
     }
 
@@ -69,5 +78,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
         return rend;
+    }
+
+    private Bundle creerBundle(){
+        Bundle bd = new Bundle();
+        bd.putSerializable("listeUser", listeUser);
+        bd.putSerializable("listeGroupe", listeGroupe);
+        bd.putSerializable("listeDepense", listeDepense);
+        return bd;
     }
 }

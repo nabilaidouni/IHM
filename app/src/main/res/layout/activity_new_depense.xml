@@ -14,13 +14,13 @@
         tools:layout_editor_absoluteY="1dp">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/textViewUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Le User : " />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/editTextUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -28,13 +28,13 @@
             android:text="Nom du User" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textViewMontant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="a payé : " />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/editTextMontant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -42,13 +42,13 @@
             android:text="Montant en €"/>
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewMotif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="motif : " />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/editTextMotif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -56,9 +56,10 @@
             android:text="pourquoi ?" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="saveDepense"
             android:text="Save" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
