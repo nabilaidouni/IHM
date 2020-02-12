@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.RegisterActivity">
+    tools:context=".controller.NewDepenseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,51 +13,53 @@
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
 
-
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Login" />
+            android:text="Le User : " />
 
         <EditText
-            android:id="@+id/editTextPseudo"
+            android:id="@+id/editTextUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="Nom du User" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewMontant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password" />
+            android:text="a payé : " />
 
         <EditText
-            android:id="@+id/editTextPassword"
+            android:id="@+id/editTextMontant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="numberDecimal"
+            android:text="Montant en €"/>
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textViewMotif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Confirm Password" />
+            android:text="motif : " />
 
         <EditText
-            android:id="@+id/editTextPassword2"
+            android:id="@+id/editTextMotif"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="pourquoi ?" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/buttonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="register"
-            android:text="Register" />
+            android:onClick="saveDepense"
+            android:text="Save" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -113,7 +114,7 @@ public class NewGroupActivity extends AppCompatActivity {
                 //mGroupeBank.setmGroupeList(grouper);
                 Toast.makeText(getApplicationContext(),"Groupe added",Toast.LENGTH_SHORT).show();
                 Intent groupActivityIntent = new Intent(NewGroupActivity.this,GroupActivity.class);
-                groupActivityIntent.putExtra("MyNewGroup", newGroupes);
+                groupActivityIntent.putExtra("MyNewGroup", (Serializable) newGroupes);
                 startActivity(groupActivityIntent);
 
             }});

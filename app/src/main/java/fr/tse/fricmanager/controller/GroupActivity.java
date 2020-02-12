@@ -32,7 +32,7 @@ public class GroupActivity extends AppCompatActivity  {
         mButtonNew = findViewById(R.id.button_new_groupe);
         lLayout =  findViewById(R.id.layout);
         nextGroupe = findViewById(R.id.mgroupeButton);
-        if (mGroupes == null){
+        if (newGroupe == null){
             mGroupes = createGroupes();
         }
         if (newGroupe != null ){
@@ -92,12 +92,7 @@ public class GroupActivity extends AppCompatActivity  {
         allGroupes.add(groupe3);
 
         return allGroupes;}
-    protected List<Groupe> addGroupe(){
-        List<Groupe> groupesBank = mGroupes;
-        groupesBank.add(newGroupe);
-        return groupesBank;
 
-        }
 
 
 
