@@ -1,6 +1,8 @@
 package fr.tse.fricmanager.model;
 
-public class Depense {
+import java.io.Serializable;
+
+public class Depense implements Serializable {
 
     private Long mValue;
     private String mDescription;

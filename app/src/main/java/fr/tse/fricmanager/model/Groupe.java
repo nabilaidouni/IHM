@@ -1,8 +1,9 @@
 package fr.tse.fricmanager.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Groupe {
+public class Groupe implements Serializable {
 
     private String mName;
     private List<User> mUsers;
