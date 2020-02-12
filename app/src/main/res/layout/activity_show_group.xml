@@ -44,7 +44,7 @@
         android:layout_height="129dp"
         android:layout_marginTop="601dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageButton10"
+        app:layout_constraintEnd_toStartOf="@+id/ButtonAddDepense"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_launcher" />
@@ -56,13 +56,13 @@
         android:layout_marginTop="501dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageButton10"
+        app:layout_constraintStart_toEndOf="@+id/ButtonAddDepense"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ic_personne" />
 
     <ImageButton
-        android:id="@+id/imageButton10"
+        android:id="@+id/ButtonAddDepense"
         android:layout_width="136dp"
         android:layout_height="129dp"
         android:layout_marginTop="601dp"

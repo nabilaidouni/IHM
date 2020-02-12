@@ -48,16 +48,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/imageButton10"
+            app:layout_constraintEnd_toStartOf="@+id/ButtonAddDepense"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_launcher" />
 
         <ImageButton
-            android:id="@+id/imageButton10"
+            android:id="@+id/ButtonAddDepense"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:onClick="addDepense"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageButton9"
             app:layout_constraintStart_toEndOf="@+id/mgroupeButton"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageButton10"
+            app:layout_constraintStart_toEndOf="@+id/ButtonAddDepense"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_personne" />

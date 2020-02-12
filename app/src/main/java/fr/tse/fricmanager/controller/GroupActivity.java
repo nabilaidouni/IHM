@@ -14,11 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.tse.fricmanager.R;
+import fr.tse.fricmanager.model.Depense;
 import fr.tse.fricmanager.model.Groupe;
+import fr.tse.fricmanager.model.User;
 
 public class GroupActivity extends AppCompatActivity  {
-    private List<Groupe> newGroupe;
-    private List<Groupe> mGroupes;
+
+    ArrayList<Groupe> listeGroupe;
+    User userLogged;
+    ArrayList<User> listeUser;
+    ArrayList<Depense> listeDepense;
+
     private Button mButtonNew;
     private ImageButton nextGroupe;
     private LinearLayout lLayout;
@@ -28,20 +34,20 @@ public class GroupActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_group);
-        newGroupe = (List<Groupe>) getIntent().getSerializableExtra("MyNewGroup");
         mButtonNew = findViewById(R.id.button_new_groupe);
         lLayout =  findViewById(R.id.layout);
         nextGroupe = findViewById(R.id.mgroupeButton);
-        if (newGroupe == null){
-            mGroupes = createGroupes();
-        }
-        if (newGroupe != null ){
-            mGroupes = newGroupe;
-        }
 
-        for(int i=0;i<mGroupes.size();i++){
+        Intent intent = this.getIntent();
+        Bundle bd = intent.getExtras();
+        listeUser = (ArrayList<User>)bd.getSerializable("listeUser");
+        userLogged =(User)bd.getSerializable("userLogged");
+        listeGroupe = (ArrayList<Groupe>)bd.getSerializable("listeGroupe");
+        listeDepense = (ArrayList<Depense>)bd.getSerializable("listeDepense");
+
+        for(int i=0;i<listeGroupe.size();i++){
             Button b = new Button(this);
-            b.setText(mGroupes.get(i).getmName());
+            b.setText(listeGroupe.get(i).getmName());
 
             lLayout.addView(b);
         }
@@ -50,7 +56,9 @@ public class GroupActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent showGroupActivity = new Intent(GroupActivity.this, ShowGroupActivity.class);
-                showGroupActivity.putExtra("idGroupe", lLayout.getChildAt(0).getId());
+                Bundle bd = creerBundle();
+                bd.putSerializable("idGroupe", lLayout.getChildAt(0).getId());
+                showGroupActivity.putExtras(bd);
                 startActivity(showGroupActivity);
             }
         });
@@ -60,7 +68,7 @@ public class GroupActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent groupActivityIntent = new Intent(GroupActivity.this,NewGroupActivity.class);
-                groupActivityIntent.putExtra("MyGroupe", (Serializable) mGroupes);
+                groupActivityIntent.putExtras(creerBundle());
                 startActivity(groupActivityIntent);
 
 
@@ -77,21 +85,24 @@ public class GroupActivity extends AppCompatActivity  {
 
     }
 
+    public void addDepense(View view){
+        Intent CrudGroupActivity = new Intent(GroupActivity.this, NewDepenseActivity.class);
+        Bundle bd = creerBundle();
+        CrudGroupActivity.putExtras(bd);
+        startActivity(CrudGroupActivity);
+    }
 
 
-    private List<Groupe> createGroupes() {
-        Groupe groupe1;
-        groupe1 = new Groupe("Coloc");
-        Groupe groupe2;
-        groupe2 = new Groupe("Travail");
-        Groupe groupe3;
-        groupe3 = new Groupe("École");
-        List<Groupe> allGroupes = new ArrayList<>();
-        allGroupes.add(groupe1);
-        allGroupes.add(groupe2);
-        allGroupes.add(groupe3);
 
-        return allGroupes;}
+    private Bundle creerBundle() {
+        Bundle bd = new Bundle();
+        bd.putSerializable("listeUser", listeUser);
+        bd.putSerializable("userLogged", userLogged);
+        bd.putSerializable("listeGroupe", listeGroupe);
+        bd.putSerializable("listeDepense", listeDepense);
+        return bd;
+
+    }
 
 
 

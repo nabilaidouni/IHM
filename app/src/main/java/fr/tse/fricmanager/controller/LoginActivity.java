@@ -18,7 +18,6 @@ import java.util.ArrayList;
 public class LoginActivity extends AppCompatActivity {
 
     EditText username, password;
-    Groupe groupeDepense;
     ArrayList<Groupe> listeGroupe;
     ArrayList<User> listeUser;
     ArrayList<Depense> listeDepense;
@@ -47,15 +46,32 @@ public class LoginActivity extends AppCompatActivity {
 
             User admin = new User("admin","admin");
             User user = new User("user","user");
+            User user1 = new User("Lia", "1234");
+            User user2 = new User("Nabil", "1234");
+            User user3 = new User("Etienne", "1234");
+
             listeUser.add(admin);
             listeUser.add(user);
+            listeUser.add(user1);
+            listeUser.add(user2);
+            listeUser.add(user3);
+
+            Groupe groupe1 = new Groupe("Coloc");
+            groupe1.addmUser(user1);
+            Groupe groupe2 = new Groupe("Travail");
+            groupe2.addmUser(user1);
+            Groupe groupe3 = new Groupe("École");
+            groupe3.addmUser(user1);
+
 
             Groupe test = new Groupe("groupeTest");
             test.addmUser(admin);
             test.addmUser(user);
             listeGroupe.add(test);
+            listeGroupe.add(groupe1);
+            listeGroupe.add(groupe2);
+            listeGroupe.add(groupe3);
 
-            this.groupeDepense = test;
 
         }
 
@@ -67,10 +83,11 @@ public class LoginActivity extends AppCompatActivity {
         try{
             User userlogged = validateLogin(user, password.getText().toString());
 
-            Intent CrudGroupActivity = new Intent(LoginActivity.this, NewDepenseActivity.class);
+
+
+            Intent CrudGroupActivity = new Intent(LoginActivity.this, GroupActivity.class);
             Bundle bd = creerBundle();
             bd.putSerializable("userLogged", userlogged);
-            bd.putSerializable("groupeDepense", groupeDepense);
             CrudGroupActivity.putExtras(bd);
             startActivity(CrudGroupActivity);
         }

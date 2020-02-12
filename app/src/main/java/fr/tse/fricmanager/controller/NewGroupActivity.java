@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.tse.fricmanager.R;
+import fr.tse.fricmanager.model.Depense;
 import fr.tse.fricmanager.model.Groupe;
 import fr.tse.fricmanager.model.User;
 import fr.tse.fricmanager.model.UserBank;
@@ -26,15 +27,16 @@ import static java.util.Arrays.*;
 
 public class NewGroupActivity extends AppCompatActivity {
 
-    private UserBank mUser;
-    private ArrayList<User> users = new ArrayList<>();
-    //private List<User> users ;
     private Groupe mGroupe;
     private List<Groupe> mGroupeBank =  new ArrayList<>();
+
+    ArrayList<Groupe> listeGroupe;
+    User userLogged;
+    ArrayList<User> listeUser;
+    ArrayList<Depense> listeDepense;
+
     private Button mCreateGroupe;
-    private CheckBox checkBox0;
-    private CheckBox checkBox1;
-    private CheckBox checkBox2;
+
     private EditText mNameGroupe;
     private LinearLayout lLayout;
 
@@ -51,97 +53,68 @@ public class NewGroupActivity extends AppCompatActivity {
         mCreateGroupe = findViewById(R.id.button_create_groupe);
         lLayout = findViewById(R.id.linearLayout);
         mNameGroupe = findViewById(R.id.text_groupe_name);
-        mUser = getUsers();
         mGroupeBank = (List<Groupe>) getIntent().getSerializableExtra("MyGroupe");
 
-        for(int i=0;i<mUser.getmUserList().size();i++){
+        Intent intent = this.getIntent();
+        Bundle bd = intent.getExtras();
+        listeUser = (ArrayList<User>)bd.getSerializable("listeUser");
+        userLogged =(User)bd.getSerializable("userLogged");
+        listeGroupe = (ArrayList<Groupe>)bd.getSerializable("listeGroupe");
+        listeDepense = (ArrayList<Depense>)bd.getSerializable("listeDepense");
+
+        for(int i=0;i<listeUser.size();i++){
             CheckBox b = new CheckBox(this);
-            b.setText(mUser.getmUserList().get(i).getmName());
+            b.setText(listeUser.get(i).getmName());
             b.setId(i);
             lLayout.addView(b);
         }
 
-        checkBox0 = findViewById(0);
-        checkBox1 = findViewById(1);
-        checkBox2 = findViewById(2);
 
         mCreateGroupe.setOnClickListener(new View.OnClickListener() {
           //  @Override
             public void onClick(View view) {
                String Name = mNameGroupe.getText().toString();
                mGroupe = new Groupe(Name);
-
-                if (checkBox0.isChecked()){
-                   String user = checkBox0.getText().toString();
-                   for(int i=0;i<mUser.getmUserList().size();i++){
-                       if(mUser.getmUserList().get(i).getmName().equals(user)){
-
-                           if (mUser.getmUserList().get(i) != null){
-                               users.add( mUser.getmUserList().get(i));
-                           }
-                       }
+                ArrayList<User> userNouveauGroupe = new ArrayList<>();
 
 
-                       }
-                   }
+                for(int i=0;i<listeUser.size();i++) {
+                    CheckBox checkBox = findViewById(i);
+                    if (checkBox.isChecked()) {
+                        String user = checkBox.getText().toString();
+                        for (int j = 0; j < listeUser.size(); j++) {
+                            if (listeUser.get(j).getmName().equals(user)) {
 
-                if (checkBox1.isChecked()){
-                    String user = checkBox1.getText().toString();
-                    for(int i=0;i<mUser.getmUserList().size();i++){
-                        if(mUser.getmUserList().get(i).getmName().equals(user)){
-                            if (mUser.getmUserList().get(i) != null){
-                                users.add( mUser.getmUserList().get(i));
-                        }
-                    }
-                }}
-                if (checkBox2.isChecked()){
-                    String user = checkBox2.getText().toString();
-                    for(int i=0;i<mUser.getmUserList().size();i++){
-                        if(mUser.getmUserList().get(i).getmName().equals(user)){
-                            if (mUser.getmUserList().get(i) != null){
-                                users.add( mUser.getmUserList().get(i));
+                                if (listeUser.get(j) != null) {
+                                    userNouveauGroupe.add(listeUser.get(j));
+                                }
                             }
                         }
                     }
                 }
 
+                mGroupe.setmUsers(userNouveauGroupe);
+                listeGroupe.add(mGroupe);
 
-                mGroupe.setmUsers(users);
-                List<Groupe> newGroupes = addGroupe();
-                //Log.d("myTag",mGroupeBank.toString() );
-                //List<Groupe> grouper = mGroupeBank.getmGroupeList();
-                //grouper.add(mGroupe);
-                //mGroupeBank.setmGroupeList(grouper);
                 Toast.makeText(getApplicationContext(),"Groupe added",Toast.LENGTH_SHORT).show();
+
                 Intent groupActivityIntent = new Intent(NewGroupActivity.this,GroupActivity.class);
-                groupActivityIntent.putExtra("MyNewGroup", (Serializable) newGroupes);
+                groupActivityIntent.putExtras(creerBundle());
                 startActivity(groupActivityIntent);
 
-            }});
-    }
-    protected UserBank getUsers(){
-        User user1;
-        user1 = new User("Lia", "12345678");
-        User user2;
-        user2 = new User("Nabil", "87654321");
-        User user3 = new User("Etienne", "1234");
-
-        UserBank allGroupes =  new UserBank(asList(user1,
-                user2,
-                user3));
-        return allGroupes;
-
-    }
-    protected List<Groupe> addGroupe(){
-        List<Groupe> groupesBank = mGroupeBank;
-        groupesBank.add(mGroupe);
-        return groupesBank;
-
+            }
+        });
     }
 
+    private Bundle creerBundle() {
+        Bundle bd = new Bundle();
+        bd.putSerializable("listeUser", listeUser);
+        bd.putSerializable("userLogged", userLogged);
+        bd.putSerializable("listeGroupe", listeGroupe);
+        bd.putSerializable("listeDepense", listeDepense);
+        return bd;
 
-
-
+    }
 
 
 }

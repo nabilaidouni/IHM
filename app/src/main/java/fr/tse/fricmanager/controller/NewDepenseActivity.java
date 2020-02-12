@@ -6,7 +6,9 @@ import fr.tse.fricmanager.model.*;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,12 +20,11 @@ import static java.lang.Long.parseLong;
 public class NewDepenseActivity extends AppCompatActivity {
 
     EditText username, montant, motif;
-    Groupe groupeDepense;
     ArrayList<Groupe> listeGroupe;
     User userLogged;
     ArrayList<User> listeUser;
     ArrayList<Depense> listeDepense;
-
+    LinearLayout mlayoutGroupe;
 
 
     @Override
@@ -36,24 +37,50 @@ public class NewDepenseActivity extends AppCompatActivity {
         listeUser = (ArrayList<User>)bd.getSerializable("listeUser");
         userLogged =(User)bd.getSerializable("userLogged");
         listeGroupe = (ArrayList<Groupe>)bd.getSerializable("listeGroupe");
-        groupeDepense = (Groupe)bd.getSerializable("groupeDepense");
         listeDepense = (ArrayList<Depense>)bd.getSerializable("listeDepense");
 
         username = findViewById(R.id.editTextUser);
         montant = findViewById(R.id.editTextMontant);
         motif = findViewById(R.id.editTextMotif);
+        mlayoutGroupe = findViewById(R.id.layoutGroupe);
+
+
+        for(int i=0;i<listeGroupe.size();i++){
+            CheckBox b = new CheckBox(this);
+            b.setText(listeGroupe.get(i).getmName());
+            b.setId(i);
+            mlayoutGroupe.addView(b);
+        }
     }
 
     public void saveDepense(View view){
         Depense nouvelleDepence;
         try {
             long mont = parseLong(montant.getText().toString());
+            Groupe groupeDepense = listeGroupe.get(0);
+
+            for(int i=0;i<listeGroupe.size();i++) {
+                CheckBox checkBox = findViewById(i);
+                if (checkBox.isChecked()) {
+                    String user = checkBox.getText().toString();
+                    for (int j = 0; j < listeGroupe.size(); j++) {
+                        if (listeGroupe.get(j).getmName().equals(user)) {
+
+                            if (listeUser.get(j) != null) {
+                                groupeDepense = listeGroupe.get(j);
+                            }
+                        }
+                    }
+                }
+            }
+
             nouvelleDepence = new Depense(mont , motif.getText().toString(), groupeDepense, userLogged);
             listeDepense.add(nouvelleDepence);
 
             Intent CrudDepenseActivity = new Intent(NewDepenseActivity.this, CrudDepenseActivity.class);
             //CrudDepenseActivity.putExtras(creerBundle());
             startActivity(CrudDepenseActivity);
+
 
         }
         catch (Exception e) {
